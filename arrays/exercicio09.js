@@ -10,7 +10,7 @@ const numbers = [1,1];
  * @param {number[]} values
  * @returns {number | null}
  */
-
+// Retonar o segundo maior número de um array
 function findSecondLargest(values) {
     if (values.length < 2) {
         throw new Error("Um array com menos de 2 elementos não tem segundo maior");

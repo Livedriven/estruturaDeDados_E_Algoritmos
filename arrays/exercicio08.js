@@ -1,28 +1,32 @@
 //@ts-check
-//Soma alvo (Two Sum simplificado)
+//Two Sum
 /**
  * @type{number[]}
  */
-const numbers = [1,2,3,4,5,6,7];
-const target = 5;
+const numbers = [1, 2, 3, 4, 5, 6, 7];
+const target = 9;
 
 /**
  * @param {number[]} values
  * @param {number} target
- * @returns {number[]}
+ * @returns {{ firstIndex: number, secondIndex: number }}
  */
-function targetSum(values,target){
-    /**
-     * @type{{[key: number]:number}}
-     */
-    const memoria = {};
-    for(let i = 0; i < values.length; i += 1){
-        const falta = target - values[i];
-        if(memoria[falta] !== undefined){
-            return [memoria[falta],i];
-        }
-        memoria[values[i]] = i;
+
+// retorna os indices dos números dentro do array que somados
+// levam ao numero desejado
+function targetSum(values, target) {
+  /**
+   * @type{{[key: number]:number}}
+   */
+  const memoria = {};
+  for (let i = 0; i < values.length; i += 1) {
+    const currentValue = values[i];
+    const missingValue = target - currentValue;
+    if (missingValue in memoria) {
+      return { firstIndex: memoria[missingValue], secondIndex: i };
     }
-    throw new Error("Nenhuma combinação encontrada");
+    memoria[currentValue] = i;
+  }
+  throw new Error("Nenhuma combinação encontrada");
 }
-console.log(targetSum(numbers,target))
+console.log(targetSum(numbers, target));
